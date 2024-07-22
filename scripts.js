@@ -45,19 +45,20 @@ function playGame() {
     let score = document.querySelector('#score');
 
     let result = document.querySelector('p#result-message');
+    result.textContent = 'Please make your seletion.';
     function playRound() {
         let b = getComputerChoice();
         if (a === b) {
             result.textContent = 'You chose ' + a + ', computer chose ' + b + ". It's a tie, no points.";
-            score.textContent = `Your score is: ${humanScore}. Computer score is ${computerScore}`;
+            score.textContent = `You: ${humanScore}. Computer: ${computerScore}`;
         } else if (a === 'rock' && b === 'scissors' || a === 'paper' && b === 'rock' || a === 'scissors' && b === 'paper') {
             ++humanScore;
-            result.textContent = 'You chose ' + a + ', computer chose ' + b + '. You gain a point! The scoreboard is: You - ' + humanScore + ' // computer - ' + computerScore
-            score.textContent = `Your score is: ${humanScore}. Computer score is ${computerScore}`;
+            result.textContent = 'You chose ' + a + ', computer chose ' + b + '. You gain a point!';
+            score.textContent = `You: ${humanScore}. Computer: ${computerScore}`;
         } else {
             ++computerScore;
-            result.textContent = 'You chose ' + a + ', computer chose ' + b + '. Computer gains a point. The scoreboard is: You - ' + humanScore + ' // computer - ' + computerScore;
-            score.textContent = `Your score is: ${humanScore}. Computer score is ${computerScore}`;
+            result.textContent = 'You chose ' + a + ', computer chose ' + b + '. Computer gains a point.';
+            score.textContent = `You: ${humanScore}. Computer: ${computerScore}`;
         };
     };
 
