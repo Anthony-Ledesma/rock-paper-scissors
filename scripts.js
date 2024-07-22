@@ -9,10 +9,10 @@ function getComputerChoice() {
     };
 };
 
-function getHumanChoice() {
-    let choice = prompt('What is your choice? Rock, Paper or Scissors.');
-    return choice.toLowerCase();
-};
+// function getHumanChoice() {
+//     let choice = prompt('What is your choice? Rock, Paper or Scissors.');
+//     return choice.toLowerCase();
+// };
 
 
 
@@ -37,29 +37,41 @@ function playGame() {
     : console.log("You win! Scoreboard: You - " + humanScore + " // computer - " + computerScore);
     return outcome;
     };
-
-
+// NEW CODE FOR GUI
 
     let humanScore = 0;
     let computerScore = 0;
 
-    let humanCounter = document.querySelector('span#human-score');
-    let computerCounter = document.querySelector('span#computer-score');
-    humanCounter.textContent = humanScore;
+    let score = document.querySelector('#score');
 
+    let result = document.querySelector('p#result-message');
     function playRound() {
         let b = getComputerChoice();
         if (a === b) {
-            console.log('You chose ' + a + ', computer chose ' + b + ". It's a tie, no points.")
+            result.textContent = 'You chose ' + a + ', computer chose ' + b + ". It's a tie, no points.";
+            score.textContent = `Your score is: ${humanScore}. Computer score is ${computerScore}`;
         } else if (a === 'rock' && b === 'scissors' || a === 'paper' && b === 'rock' || a === 'scissors' && b === 'paper') {
             ++humanScore;
-            console.log('You chose ' + a + ', computer chose ' + b + '. You gain a point! The scoreboard is: You - ' + humanScore + ' // computer - ' + computerScore)
+            result.textContent = 'You chose ' + a + ', computer chose ' + b + '. You gain a point! The scoreboard is: You - ' + humanScore + ' // computer - ' + computerScore
+            score.textContent = `Your score is: ${humanScore}. Computer score is ${computerScore}`;
         } else {
             ++computerScore;
-            console.log('You chose ' + a + ', computer chose ' + b + '. Computer gains a point. The scoreboard is: You - ' + humanScore + ' // computer - ' + computerScore);
+            result.textContent = 'You chose ' + a + ', computer chose ' + b + '. Computer gains a point. The scoreboard is: You - ' + humanScore + ' // computer - ' + computerScore;
+            score.textContent = `Your score is: ${humanScore}. Computer score is ${computerScore}`;
         };
     };
 
+    function checkScoreboard() {
+        if (humanScore === 5) {
+            result.textContent = 'Congratulations, you win!!!';
+            humanScore = 0;
+            computerScore = 0;
+        } else if (computerScore === 5) {
+            result.textContent = 'Boo hoo, you lost. Loser :(';
+            humanScore = 0;
+            computerScore = 0;
+        } else {};
+    };
 
     let choice = document.querySelector('#choice');
 
@@ -70,29 +82,17 @@ function playGame() {
             case 'rock':
                 a = 'rock';
                 playRound();
+                checkScoreboard();
                 break;
             case 'paper':
                 a = 'paper';
                 playRound();
+                checkScoreboard();
                 break;
             case 'scissors':
                 a = 'scissors';
                 playRound();
+                checkScoreboard();
                 break;
         }
      });
-   
-    //Round one
-   // playRound();
-
-    //Round two
-   // playRound();
-
-    //Round three
-   // playRound();
-
-    //Round four
-   // playRound();
-
-    //Round five
-   // playRound();
